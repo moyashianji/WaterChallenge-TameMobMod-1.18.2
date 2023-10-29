@@ -1,15 +1,13 @@
 
-package com.water.animall.entity;
+package com.water.animall.Creeper.entity;
 
-import com.water.Creeper.TameSwellGoal;
+import com.water.animall.Creeper.goal.TameSwellGoal;
 import com.water.animall.init.AnimallModEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
@@ -19,7 +17,6 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.animal.Cat;
-import net.minecraft.world.entity.animal.IronGolem;
 import net.minecraft.world.entity.animal.Ocelot;
 import net.minecraft.world.entity.animal.goat.Goat;
 import net.minecraft.world.entity.monster.Creeper;
@@ -31,7 +28,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.network.PlayMessages;
 import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.fml.common.Mod;
@@ -48,7 +44,7 @@ import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.network.protocol.Packet;
-import net.minecraftforge.server.ServerLifecycleHooks;
+
 import javax.annotation.Nullable;
 import java.util.Collection;
 
@@ -63,6 +59,8 @@ public class SssssEntity extends Monster implements PowerableMob {
 	private int maxSwell = 30;
 	private int explosionRadius = 3;
 	private int droppedSkulls;
+
+	//追加分
 	private int moveTicks = 0;
 	private int totalMoveTicks = 100; // 5秒分のタイマー (20 ticks * 5)
 
@@ -114,7 +112,8 @@ public class SssssEntity extends Monster implements PowerableMob {
 	}
 
 	public static AttributeSupplier.Builder createAttributes() {
-		return Monster.createMonsterAttributes().add(Attributes.MOVEMENT_SPEED, 0.25D);
+		return Monster.createMonsterAttributes().add(Attributes.MOVEMENT_SPEED, 0.25D).add(Attributes.MAX_HEALTH,100000000);
+
 	}
 
 	public int getMaxFallDistance() {
@@ -239,20 +238,21 @@ public class SssssEntity extends Monster implements PowerableMob {
 		this.entityData.set(DATA_IS_POWERED, true);
 	}
 
+	//追加分
 	public static boolean flag = false;
 
 	public InteractionResult mobInteract(Player p_32301_, InteractionHand p_32302_) {
 		ItemStack itemstack = p_32301_.getItemInHand(p_32302_);
 
-
+//追加分
 		if (itemstack.isEmpty()) {
 
 			Vec3 lookVector = this.getLookAngle();
-
 			// ゾンビを5秒間の移動を開始
 			startCustomMobMovement(lookVector, 0.4);
 			flag = true;
 		}
+
 		if (itemstack.is(Items.FLINT_AND_STEEL)) {
 			this.level.playSound(p_32301_, this.getX(), this.getY(), this.getZ(), SoundEvents.FLINTANDSTEEL_USE, this.getSoundSource(), 1.0F, this.random.nextFloat() * 0.4F + 0.8F);
 			if (!this.level.isClientSide) {
@@ -267,7 +267,7 @@ public class SssssEntity extends Monster implements PowerableMob {
 			return super.mobInteract(p_32301_, p_32302_);
 		}
 	}
-
+//追加分
 	// ゾンビのようにプレイヤーの右クリックに反応する
 	// 移動を開始するタイマーをセット
 	private void startCustomMobMovement(Vec3 direction, double speed) {
@@ -284,7 +284,7 @@ public class SssssEntity extends Monster implements PowerableMob {
 	@Override
 	public void aiStep() {
 		super.aiStep();
-
+		//追加bん
 		Player player = level.getNearestPlayer(this, 100.0);
 
 		if (player != null) {

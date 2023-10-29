@@ -1,6 +1,7 @@
 
 package com.water.item;
 
+import com.water.animall.Slime.entity.TameSlimeEntity;
 import com.water.init.TestttModItems;
 import com.water.procedures.RidemobugaaitemudeGongJisaretatokiProcedure;
 import net.minecraft.client.player.LocalPlayer;
@@ -31,7 +32,7 @@ public class RideItem extends Item {
 	public boolean hurtEnemy(ItemStack itemstack, LivingEntity entity, LivingEntity sourceentity) {
 		boolean retval = super.hurtEnemy(itemstack, entity, sourceentity);
 
-		if(entity instanceof Slime) {
+		if(entity instanceof TameSlimeEntity) {
 			RidemobugaaitemudeGongJisaretatokiProcedure.execute(entity, sourceentity);
 		}
 		return retval;
@@ -42,10 +43,10 @@ public class RideItem extends Item {
 		Player player = event.getPlayer();
 		if (event.getItemStack().getItem() == TestttModItems.RIDE.get()) {
 
-			if (player.getVehicle() instanceof Slime) {
+			if (player.getVehicle() instanceof TameSlimeEntity) {
 
 				if(player.getVehicle().isOnGround()) {
-					((Slime) player.getVehicle()).setJumping(true);
+					((TameSlimeEntity) player.getVehicle()).setJumping(true);
 					player.getVehicle().setDeltaMovement(new Vec3((player.getVehicle().getDeltaMovement().x() + player.getVehicle().getLookAngle().x * 0.5), (player.getVehicle().getDeltaMovement().y() + 0.7),
 							(player.getVehicle().getDeltaMovement().z() + player.getVehicle().getLookAngle().z * 0.5)));
 				}
@@ -73,10 +74,10 @@ public class RideItem extends Item {
 	public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
 		if (event.phase == TickEvent.Phase.START) {
 			Player player = event.player;
-			if (player.isPassenger() && player.getVehicle() instanceof Slime) {
-				Slime zombie = (Slime) player.getVehicle();
+			if (player.isPassenger() && player.getVehicle() instanceof TameSlimeEntity) {
+				TameSlimeEntity zombie = (TameSlimeEntity) player.getVehicle();
 				// Synchronize the motion of the zombie with the player.
-				System.out.println("slime");
+				System.out.println("TameSlimeEntity");
 
 				player.getAbilities().invulnerable = (true);
 				player.onUpdateAbilities();
@@ -84,7 +85,7 @@ public class RideItem extends Item {
 				move((LivingEntity) player.getVehicle(), event.player.getDeltaMovement());
 				setLookAngle(player.getVehicle(), player);
 			}
-			if(!(player.getVehicle() instanceof Slime)){
+			if(!(player.getVehicle() instanceof TameSlimeEntity)){
 				if(!player.isCreative()) {
 					player.getAbilities().invulnerable = (false);
 					player.onUpdateAbilities();
@@ -97,23 +98,23 @@ public class RideItem extends Item {
 	public static void onLivingAttack(LivingAttackEvent event) {
 		if (event.getEntityLiving() instanceof LivingEntity) {
 			LivingEntity entity = (LivingEntity) event.getEntityLiving();
-			if (entity instanceof Slime) {
-					if(!(event.getSource().getEntity() instanceof Player)) {
-						event.setCanceled(true); // ゾンビの攻撃を無効化
-						System.out.println("AttackDisable");
-					}
+			if (entity instanceof TameSlimeEntity) {
+				if(!(event.getSource().getEntity() instanceof Player)) {
+					event.setCanceled(true); // ゾンビの攻撃を無効化
+					System.out.println("AttackDisable");
+				}
 			}
 		}
 	}
 	@SubscribeEvent
 	public static void onLivingHurt(LivingHurtEvent event) {
-		if (event.getSource().getEntity() instanceof Slime) {
+		if (event.getSource().getEntity() instanceof TameSlimeEntity) {
 
 
-				event.setCanceled(true); // ゾンビのダメージを無効化
-				System.out.println("SlimeHurtDisabled");
-			}
+			event.setCanceled(true); // ゾンビのダメージを無効化
+			System.out.println("TameSlimeEntityHurtDisabled");
 		}
+	}
 	//動く
 	private void addMotion(Player player, Entity playerMount) {
 

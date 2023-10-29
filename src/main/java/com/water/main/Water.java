@@ -1,6 +1,7 @@
 package com.water.main;
 
-import com.water.animall.entity.SssssEntity;
+import com.water.animall.Creeper.entity.SssssEntity;
+import com.water.animall.Piglin.PiglinEntity;
 import com.water.animall.init.AnimallModEntities;
 import com.water.animall.init.AnimallModItems;
 import com.water.gunss.init.GunssModEntities;
@@ -8,6 +9,7 @@ import com.water.gunss.init.GunssModItems;
 import com.water.init.TestttModItems;
 import com.water.item.RideItem;
 import com.water.item.RidingUtilsCommonConfigs;
+import com.water.tamemobitem.init.TamemobModItems;
 import com.water.teamitem.init.TeamitemModItems;
 import com.water.teamitem.item.WolfItem;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -33,6 +35,8 @@ public class Water {
         AnimallModItems.REGISTRY.register(bus);
         AnimallModEntities.REGISTRY.register(bus);
         SssssEntity.register();
+        PiglinEntity.register();
+        TamemobModItems.REGISTRY.register(bus);
         bus.addListener(this::onClientSetup);
     }
 

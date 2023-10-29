@@ -29,7 +29,7 @@ public class WolfItem extends Item {
 		if (event.getItemStack().getItem() == TeamitemModItems.WOLF.get()) {
 
 			if (player.level instanceof ServerLevel _level) {
-				Entity entityToSpawn = new Creeper(EntityType.CREEPER, _level);
+				Entity entityToSpawn = new Wolf(EntityType.WOLF, _level);
 				if (entityToSpawn instanceof Mob _mobToSpawn)
 					_mobToSpawn.finalizeSpawn(_level, player.level.getCurrentDifficultyAt(entityToSpawn.blockPosition()), MobSpawnType.MOB_SUMMONED, null, null);
 				((Wolf) entityToSpawn).tame(player);

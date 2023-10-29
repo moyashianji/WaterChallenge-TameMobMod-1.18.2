@@ -1,9 +1,19 @@
 
 package com.water.gunss.entity;
 
+import com.water.animall.Blaze.entity.TameBlazeEntity;
 import com.water.gunss.init.GunssModEntities;
 import com.water.gunss.procedures.GunFeibiDaoJugaenteiteiniDangtatutatokiProcedure;
+import com.water.tamemobitem.init.TamemobModItems;
+import com.water.teamitem.init.TeamitemModItems;
+import net.minecraft.world.entity.animal.Cow;
+import net.minecraft.world.entity.animal.IronGolem;
+import net.minecraft.world.entity.animal.Wolf;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.monster.*;
+import net.minecraft.world.entity.monster.piglin.Piglin;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.scores.Team;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.network.PlayMessages;
 import net.minecraftforge.network.NetworkHooks;
@@ -68,11 +78,126 @@ public class GunEntity extends AbstractArrow implements ItemSupplier {
 	@Override
 	public void onHitEntity(EntityHitResult entityHitResult) {
 		super.onHitEntity(entityHitResult);
+		Level _level = entityHitResult.getEntity().getLevel();
 
 		if(!(entityHitResult.getEntity() instanceof Player)) {
-			entityHitResult.getEntity().discard();
 
+			if(entityHitResult.getEntity() instanceof Blaze){
 
+				if (!_level.isClientSide()) {
+					ItemEntity entityToSpawn = new ItemEntity(_level, entityHitResult.getEntity().getX(), entityHitResult.getEntity().getY(), entityHitResult.getEntity().getZ(), new ItemStack(TamemobModItems.TAMEBLAZE.get()));
+					entityToSpawn.setPickUpDelay(0);
+					entityToSpawn.setUnlimitedLifetime();
+					_level.addFreshEntity(entityToSpawn);
+				}
+				entityHitResult.getEntity().discard();
+			}
+			if(entityHitResult.getEntity() instanceof Cow){
+
+				if (!_level.isClientSide()) {
+					ItemEntity entityToSpawn = new ItemEntity(_level, entityHitResult.getEntity().getX(), entityHitResult.getEntity().getY(), entityHitResult.getEntity().getZ(), new ItemStack(TamemobModItems.TAMECOW.get()));
+					entityToSpawn.setPickUpDelay(0);
+					entityToSpawn.setUnlimitedLifetime();
+					_level.addFreshEntity(entityToSpawn);
+				}
+				entityHitResult.getEntity().discard();
+			}
+
+			if(entityHitResult.getEntity() instanceof Creeper){
+
+				if (!_level.isClientSide()) {
+					ItemEntity entityToSpawn = new ItemEntity(_level, entityHitResult.getEntity().getX(), entityHitResult.getEntity().getY(), entityHitResult.getEntity().getZ(), new ItemStack(TamemobModItems.TAMECREEPER.get()));
+					entityToSpawn.setPickUpDelay(0);
+					entityToSpawn.setUnlimitedLifetime();
+					_level.addFreshEntity(entityToSpawn);
+				}
+				entityHitResult.getEntity().discard();
+			}
+			if(entityHitResult.getEntity() instanceof EnderMan){
+
+				if (!_level.isClientSide()) {
+					ItemEntity entityToSpawn = new ItemEntity(_level, entityHitResult.getEntity().getX(), entityHitResult.getEntity().getY(), entityHitResult.getEntity().getZ(), new ItemStack(TamemobModItems.TAMEENDER.get()));
+					entityToSpawn.setPickUpDelay(0);
+					entityToSpawn.setUnlimitedLifetime();
+					_level.addFreshEntity(entityToSpawn);
+				}
+				entityHitResult.getEntity().discard();
+			}
+
+			if(entityHitResult.getEntity() instanceof Phantom){
+
+				if (!_level.isClientSide()) {
+					ItemEntity entityToSpawn = new ItemEntity(_level, entityHitResult.getEntity().getX(), entityHitResult.getEntity().getY(), entityHitResult.getEntity().getZ(), new ItemStack(TamemobModItems.TAMEFHANTOM.get()));
+					entityToSpawn.setPickUpDelay(0);
+					entityToSpawn.setUnlimitedLifetime();
+					_level.addFreshEntity(entityToSpawn);
+				}
+				entityHitResult.getEntity().discard();
+			}
+
+			if(entityHitResult.getEntity() instanceof Ghast){
+
+				if (!_level.isClientSide()) {
+					ItemEntity entityToSpawn = new ItemEntity(_level, entityHitResult.getEntity().getX(), entityHitResult.getEntity().getY(), entityHitResult.getEntity().getZ(), new ItemStack(TamemobModItems.TAMEGHAST.get()));
+					entityToSpawn.setPickUpDelay(0);
+					entityToSpawn.setUnlimitedLifetime();
+					_level.addFreshEntity(entityToSpawn);
+				}
+				entityHitResult.getEntity().discard();
+			}
+
+			if(entityHitResult.getEntity() instanceof IronGolem){
+
+				if (!_level.isClientSide()) {
+					ItemEntity entityToSpawn = new ItemEntity(_level, entityHitResult.getEntity().getX(), entityHitResult.getEntity().getY(), entityHitResult.getEntity().getZ(), new ItemStack(TamemobModItems.TAMEGOLEM.get()));
+					entityToSpawn.setPickUpDelay(0);
+					entityToSpawn.setUnlimitedLifetime();
+					_level.addFreshEntity(entityToSpawn);
+				}
+				entityHitResult.getEntity().discard();
+			}
+			if(entityHitResult.getEntity() instanceof Slime){
+
+				if (!_level.isClientSide()) {
+					ItemEntity entityToSpawn = new ItemEntity(_level, entityHitResult.getEntity().getX(), entityHitResult.getEntity().getY(), entityHitResult.getEntity().getZ(), new ItemStack(TamemobModItems.TAMESLIME.get()));
+					entityToSpawn.setPickUpDelay(0);
+					entityToSpawn.setUnlimitedLifetime();
+					_level.addFreshEntity(entityToSpawn);
+				}
+				entityHitResult.getEntity().discard();
+			}
+			if(entityHitResult.getEntity() instanceof Piglin){
+
+				if (!_level.isClientSide()) {
+					ItemEntity entityToSpawn = new ItemEntity(_level, entityHitResult.getEntity().getX(), entityHitResult.getEntity().getY(), entityHitResult.getEntity().getZ(), new ItemStack(TamemobModItems.TAMEPIGLIN.get()));
+					entityToSpawn.setPickUpDelay(0);
+					entityToSpawn.setUnlimitedLifetime();
+					_level.addFreshEntity(entityToSpawn);
+				}
+				entityHitResult.getEntity().discard();
+			}
+
+			if(entityHitResult.getEntity() instanceof Spider){
+
+				if (!_level.isClientSide()) {
+					ItemEntity entityToSpawn = new ItemEntity(_level, entityHitResult.getEntity().getX(), entityHitResult.getEntity().getY(), entityHitResult.getEntity().getZ(), new ItemStack(TamemobModItems.TAMESPIDER.get()));
+					entityToSpawn.setPickUpDelay(0);
+					entityToSpawn.setUnlimitedLifetime();
+					_level.addFreshEntity(entityToSpawn);
+				}
+				entityHitResult.getEntity().discard();
+			}
+
+			if(entityHitResult.getEntity() instanceof Wolf){
+
+				if (!_level.isClientSide()) {
+					ItemEntity entityToSpawn = new ItemEntity(_level, entityHitResult.getEntity().getX(), entityHitResult.getEntity().getY(), entityHitResult.getEntity().getZ(), new ItemStack(TeamitemModItems.WOLF.get()));
+					entityToSpawn.setPickUpDelay(0);
+					entityToSpawn.setUnlimitedLifetime();
+					_level.addFreshEntity(entityToSpawn);
+				}
+				entityHitResult.getEntity().discard();
+			}
 		}
 		GunFeibiDaoJugaenteiteiniDangtatutatokiProcedure.execute(
 

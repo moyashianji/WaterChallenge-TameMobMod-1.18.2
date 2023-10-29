@@ -1,0 +1,34 @@
+package com.water.animall.Ghast.renderer;
+
+
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.water.animall.Ghast.entity.TameGhastEntity;
+import net.minecraft.client.model.GhastModel;
+import net.minecraft.client.model.geom.ModelLayers;
+import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.client.renderer.entity.MobRenderer;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.monster.Ghast;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+
+@OnlyIn(Dist.CLIENT)
+public class TameGhastRenderer extends MobRenderer<TameGhastEntity, GhastModel<TameGhastEntity>> {
+    private static final ResourceLocation GHAST_LOCATION = new ResourceLocation("textures/entity/ghast/ghast.png");
+    private static final ResourceLocation GHAST_SHOOTING_LOCATION = new ResourceLocation("textures/entity/ghast/ghast_shooting.png");
+
+    public TameGhastRenderer(EntityRendererProvider.Context p_174129_) {
+        super(p_174129_, new GhastModel<>(p_174129_.bakeLayer(ModelLayers.GHAST)), 1.5F);
+    }
+
+    public ResourceLocation getTextureLocation(TameGhastEntity p_114755_) {
+        return p_114755_.isCharging() ? GHAST_SHOOTING_LOCATION : GHAST_LOCATION;
+    }
+
+    protected void scale(TameGhastEntity p_114757_, PoseStack p_114758_, float p_114759_) {
+        float f = 1.0F;
+        float f1 = 4.5F;
+        float f2 = 4.5F;
+        p_114758_.scale(4.5F, 4.5F, 4.5F);
+    }
+}

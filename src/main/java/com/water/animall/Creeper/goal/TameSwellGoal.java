@@ -1,10 +1,10 @@
-package com.water.Creeper;
+package com.water.animall.Creeper.goal;
 
 
 import java.util.EnumSet;
 import javax.annotation.Nullable;
 
-import com.water.animall.entity.SssssEntity;
+import com.water.animall.Creeper.entity.SssssEntity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.goal.Goal;
 
