@@ -4,6 +4,7 @@ import com.water.animall.Creeper.entity.SssssEntity;
 import com.water.animall.Piglin.PiglinEntity;
 import com.water.animall.init.AnimallModEntities;
 import com.water.animall.init.AnimallModItems;
+import com.water.fly.FlyEvent;
 import com.water.gunss.init.GunssModEntities;
 import com.water.gunss.init.GunssModItems;
 import com.water.init.TestttModItems;
@@ -37,6 +38,8 @@ public class Water {
         SssssEntity.register();
         PiglinEntity.register();
         TamemobModItems.REGISTRY.register(bus);
+
+        FlyEvent.register();
         bus.addListener(this::onClientSetup);
     }
 
