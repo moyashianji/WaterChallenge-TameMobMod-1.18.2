@@ -9,6 +9,7 @@ import com.water.animall.Phantom.entity.TamePhantomEntity;
 import com.water.animall.Slime.entity.TameSlimeEntity;
 import com.water.animall.Spider.entity.TameSpiderEntity;
 import com.water.animall.init.AnimallModEntities;
+import com.water.tamemobitem.init.TamemobModItems;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -23,10 +24,13 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.monster.Blaze;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.SmallFireball;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.biome.MobSpawnSettings;
 import net.minecraft.world.level.levelgen.Heightmap;
@@ -133,6 +137,12 @@ public class TameBlazeEntity extends Monster {
         Player player = level.getNearestPlayer(this, 200.0);
         if (player != null) {
 
+            if (hasEnderPearlNearby()) {
+                // ゾンビの周りにエンダーパールがある場合の処理
+                System.out.println("hello");
+            }
+
+
             // ゾンビがプレイヤーの背後を追従する
         double distanceX = player.getX() - this.getX();
         double distanceZ = player.getZ() - this.getZ();
@@ -179,6 +189,27 @@ public class TameBlazeEntity extends Monster {
         super.aiStep();
     }
 
+
+    // ゾンビの周りにエンダーパールがあるかを確認するメソッド
+    private boolean hasEnderPearlNearby() {
+        double radius = 0.5; // 半径2マス
+
+        int radiusInt = (int) Math.ceil(radius);
+        for (ItemEntity itemEntity : level.getEntitiesOfClass(ItemEntity.class, getBoundingBox().inflate(radius))) {
+            if (itemEntity.getItem().getItem() == Items.ENDER_PEARL) {
+                itemEntity.discard();
+
+                if (!this.level.isClientSide()) {
+                    ItemEntity entityToSpawn = new ItemEntity(this.level, itemEntity.getX(), itemEntity.getY(), itemEntity.getZ(), new ItemStack(Items.ENDER_EYE.getDefaultInstance().getItem()));
+                    entityToSpawn.setPickUpDelay(0);
+                    entityToSpawn.setUnlimitedLifetime();
+                    this.level.addFreshEntity(entityToSpawn);
+                }
+                return true;
+            }
+        }
+        return false;
+    }
     public boolean isSensitiveToWater() {
         return true;
     }

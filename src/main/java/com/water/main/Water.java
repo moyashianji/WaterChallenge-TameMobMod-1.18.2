@@ -40,6 +40,7 @@ public class Water {
         PiglinEntity.register();
         TamemobModItems.REGISTRY.register(bus);
         Teleport.register();
+      //  ParlToEye.register();
         FlyEvent.register();
         bus.addListener(this::onClientSetup);
     }
