@@ -25,26 +25,30 @@ public class FlyEvent {
     public static void onPlayerInteract(PlayerInteractEvent.EntityInteract event) {
         Player player = event.getPlayer();
         if (event.getTarget() instanceof TamePhantomEntity) {
-            // noGravityTicks を設定して20秒間だけsetNoGravityをtrueにする
-            noGravityTicks = 700; // 20 ticks/秒で計算
-            player.getAbilities().mayfly = true;
-            player.onUpdateAbilities();
+            if(!(event.getPlayer().isCreative())) {
+                // noGravityTicks を設定して20秒間だけsetNoGravityをtrueにする
+                noGravityTicks = 700; // 20 ticks/秒で計算
+                player.getAbilities().mayfly = true;
+                player.onUpdateAbilities();
+            }
         }
     }
 
     @SubscribeEvent
     public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
         if (event.phase == TickEvent.Phase.START) {
-            // noGravityTicks をカウントダウン
-            if (noGravityTicks > 0) {
-                noGravityTicks--;
-            } else {
-                // 20秒経過後、setNoGravityを元に戻す
-                Player player = event.player;
-                player.getAbilities().mayfly = false;
+            if(!(event.player.isCreative())) {
+                // noGravityTicks をカウントダウン
+                if (noGravityTicks > 0) {
+                    noGravityTicks--;
+                } else {
+                    // 20秒経過後、setNoGravityを元に戻す
+                    Player player = event.player;
+                    player.getAbilities().mayfly = false;
 
-                player.setNoGravity(false);
-                player.onUpdateAbilities();
+                    player.setNoGravity(false);
+                    player.onUpdateAbilities();
+                }
             }
         }
     }

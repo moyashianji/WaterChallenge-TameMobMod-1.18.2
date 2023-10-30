@@ -1,4 +1,5 @@
 package com.water.animall.Cow.entity;
+import com.water.tamemobitem.init.TamemobModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
@@ -111,7 +112,7 @@ public class TameCow extends Animal {
         ItemStack itemstack = p_28298_.getItemInHand(p_28299_);
         if (itemstack.is(Items.BUCKET) && !this.isBaby()) {
             p_28298_.playSound(SoundEvents.COW_MILK, 1.0F, 1.0F);
-            ItemStack itemstack1 = ItemUtils.createFilledResult(itemstack, p_28298_, Items.MILK_BUCKET.getDefaultInstance());
+            ItemStack itemstack1 = ItemUtils.createFilledResult(itemstack, p_28298_, TamemobModItems.MILK.get().getDefaultInstance());
             p_28298_.setItemInHand(p_28299_, itemstack1);
             return InteractionResult.sidedSuccess(this.level.isClientSide);
         } else {

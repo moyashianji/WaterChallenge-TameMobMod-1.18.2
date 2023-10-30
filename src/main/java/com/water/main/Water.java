@@ -1,6 +1,7 @@
 package com.water.main;
 
 import com.water.animall.Creeper.entity.SssssEntity;
+import com.water.animall.Enderman.event.Teleport;
 import com.water.animall.Piglin.PiglinEntity;
 import com.water.animall.init.AnimallModEntities;
 import com.water.animall.init.AnimallModItems;
@@ -38,7 +39,7 @@ public class Water {
         SssssEntity.register();
         PiglinEntity.register();
         TamemobModItems.REGISTRY.register(bus);
-
+        Teleport.register();
         FlyEvent.register();
         bus.addListener(this::onClientSetup);
     }

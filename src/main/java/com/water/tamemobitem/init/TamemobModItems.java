@@ -27,4 +27,7 @@ public class TamemobModItems {
 	public static final RegistryObject<Item> TAMEGOLEM = REGISTRY.register("tamegolem", () -> new TamegolemItem());
 	public static final RegistryObject<Item> TAMECOW = REGISTRY.register("tamecow", () -> new TamecowItem());
 	public static final RegistryObject<Item> TAMEWOLF = REGISTRY.register("tamewolf", () -> new TamewolfItem());
+
+	public static final RegistryObject<Item> MILK = REGISTRY.register("milk", () -> new NewMilkItem());
+
 }
