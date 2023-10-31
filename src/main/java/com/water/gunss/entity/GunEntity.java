@@ -3,6 +3,7 @@ package com.water.gunss.entity;
 
 import com.water.animall.Blaze.entity.TameBlazeEntity;
 import com.water.gunss.init.GunssModEntities;
+import com.water.gunss.init.GunssModItems;
 import com.water.gunss.procedures.GunFeibiDaoJugaenteiteiniDangtatutatokiProcedure;
 import com.water.tamemobitem.init.TamemobModItems;
 import com.water.teamitem.init.TeamitemModItems;
@@ -61,7 +62,7 @@ public class GunEntity extends AbstractArrow implements ItemSupplier {
 	@Override
 	@OnlyIn(Dist.CLIENT)
 	public ItemStack getItem() {
-		return new ItemStack(Blocks.OAK_BUTTON);
+		return new ItemStack(GunssModItems.GUN.get());
 	}
 
 	@Override

@@ -1,6 +1,7 @@
 {
-  "parent": "item/generated",
+  "parent": "water:custom/ball_model",
   "textures": {
-    "layer0": "water:items/tameslime"
+    "0": "water:blocks/tameslime",
+    "particle": "water:items/tameslime"
   }
 }
