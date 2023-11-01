@@ -173,15 +173,44 @@ public class TameSlimeEntity extends Mob implements Enemy {
     protected boolean shouldDespawnInPeaceful() {
         return this.getSize() > 0;
     }
+    private double maxFallDistance = 10.0; // 一定の高さまでの落下距離
 
+    private double lastAirborneY = Double.NaN;
     public void tick() {
 
         this.squish += (this.targetSquish - this.squish) * 0.5F;
         this.oSquish = this.squish;
         super.tick();
-
-
         Player player = this.level.getNearestPlayer(this, 200.0);
+        if (player != null) {
+            if (player.getVehicle() == this) {
+                if (!level.isClientSide) {
+
+                    if (isOnGround()) {
+                        // モブが地面に着地した場合
+                        if (!Double.isNaN(lastAirborneY)) {
+                            double fallDistance = lastAirborneY - this.getY(); // 落下距離の計算
+                            System.out.println(fallDistance);
+                            if (fallDistance > 0) {
+                                double maxFallDistance = Math.min(fallDistance, 150); // 最大値を200に制限
+                                double targetY = lastAirborneY - (Math.min(maxFallDistance, 100) * 0.7); // 最大100までに制限
+                                double newY = Math.max(targetY, getY());
+                                this.setDeltaMovement(this.getDeltaMovement().x, newY - getY(), this.getDeltaMovement().z);
+                            }
+                            lastAirborneY = Double.NaN; // 空中にいない場合、lastAirborneY を NaN にリセット
+                        }
+                    } else {
+                        if (Double.isNaN(lastAirborneY)) {
+                            // モブが空中にいる場合かつ初めての空中状態
+                            lastAirborneY = this.getY(); // 初回の高さの取得
+                            System.out.println(lastAirborneY);
+                        }
+                    }
+
+                }
+            }
+        }
+
         if (player != null) {
 
             // ゾンビがプレイヤーの背後を追従する
@@ -383,6 +412,8 @@ public class TameSlimeEntity extends Mob implements Enemy {
         this.setDeltaMovement(vec3.x, (double)this.getJumpPower(), vec3.z);
         this.hasImpulse = true;
     }
+
+
 
     @Nullable
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor p_33601_, DifficultyInstance p_33602_, MobSpawnType p_33603_, @Nullable SpawnGroupData p_33604_, @Nullable CompoundTag p_33605_) {

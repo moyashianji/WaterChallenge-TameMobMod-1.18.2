@@ -77,7 +77,6 @@ public class RideItem extends Item {
 			if (player.isPassenger() && player.getVehicle() instanceof TameSlimeEntity) {
 				TameSlimeEntity zombie = (TameSlimeEntity) player.getVehicle();
 				// Synchronize the motion of the zombie with the player.
-				System.out.println("TameSlimeEntity");
 
 				player.getAbilities().invulnerable = (true);
 				player.onUpdateAbilities();
