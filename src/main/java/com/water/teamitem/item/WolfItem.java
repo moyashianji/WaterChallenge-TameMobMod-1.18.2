@@ -34,6 +34,7 @@ public class WolfItem extends Item {
 					_mobToSpawn.finalizeSpawn(_level, player.level.getCurrentDifficultyAt(entityToSpawn.blockPosition()), MobSpawnType.MOB_SUMMONED, null, null);
 				((Wolf) entityToSpawn).tame(player);
 				entityToSpawn.setPos(player.getX(),player.getY(),player.getZ());
+				entityToSpawn.setInvulnerable(true);
 				player.level.addFreshEntity(entityToSpawn);
 			}
 

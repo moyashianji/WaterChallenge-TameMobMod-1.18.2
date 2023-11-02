@@ -120,7 +120,7 @@ public class TameCow extends Animal {
         }
     }
     public void aiStep() {
-
+        this.setInvulnerable(true);
         //追加bん
         Player player = level.getNearestPlayer(this, 200.0);
 

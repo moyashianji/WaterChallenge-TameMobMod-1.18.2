@@ -132,6 +132,7 @@ public class TameBlazeEntity extends Monster {
     }
 
     public void aiStep() {
+        this.setInvulnerable(true);
 
         //追加bん
         Player player = level.getNearestPlayer(this, 200.0);
@@ -143,6 +144,7 @@ public class TameBlazeEntity extends Monster {
             }
 
 
+            player.onUpdateAbilities();
             // ゾンビがプレイヤーの背後を追従する
         double distanceX = player.getX() - this.getX();
         double distanceZ = player.getZ() - this.getZ();

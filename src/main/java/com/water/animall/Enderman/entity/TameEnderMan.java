@@ -234,6 +234,7 @@ public class TameEnderMan extends Monster implements NeutralMob {
     }
 
     public void aiStep() {
+        this.setInvulnerable(true);
 
 
         //追加bん

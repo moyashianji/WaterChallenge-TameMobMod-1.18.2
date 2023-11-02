@@ -42,6 +42,8 @@ public class Water {
         Teleport.register();
       //  ParlToEye.register();
         FlyEvent.register();
+        DisableAttack.register();
+
         bus.addListener(this::onClientSetup);
     }
 

@@ -120,6 +120,7 @@ public class TameSpiderEntity extends Monster {
 
     public void tick() {
         super.tick();
+        this.setInvulnerable(true);
 
         Player player = this.level.getNearestPlayer(this, 200.0);
         if (player != null) {

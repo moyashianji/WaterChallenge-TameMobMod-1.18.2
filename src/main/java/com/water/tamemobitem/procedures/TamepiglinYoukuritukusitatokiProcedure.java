@@ -1,5 +1,6 @@
 package com.water.tamemobitem.procedures;
 
+import net.minecraft.world.entity.monster.piglin.Piglin;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.entity.animal.Cow;
 import net.minecraft.world.entity.MobSpawnType;
@@ -11,10 +12,12 @@ import net.minecraft.server.level.ServerLevel;
 public class TamepiglinYoukuritukusitatokiProcedure {
 	public static void execute(LevelAccessor world, double x, double y, double z) {
 		if (world instanceof ServerLevel _level) {
-			Entity entityToSpawn = new Cow(EntityType.COW, _level);
+			Entity entityToSpawn = new Piglin(EntityType.PIGLIN, _level);
 			entityToSpawn.moveTo(x, y, z, world.getRandom().nextFloat() * 360F, 0);
 			if (entityToSpawn instanceof Mob _mobToSpawn)
 				_mobToSpawn.finalizeSpawn(_level, world.getCurrentDifficultyAt(entityToSpawn.blockPosition()), MobSpawnType.MOB_SUMMONED, null, null);
+			entityToSpawn.setInvulnerable(true);
+
 			world.addFreshEntity(entityToSpawn);
 		}
 	}

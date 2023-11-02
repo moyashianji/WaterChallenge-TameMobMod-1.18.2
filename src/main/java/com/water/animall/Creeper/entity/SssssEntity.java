@@ -166,6 +166,8 @@ public class SssssEntity extends Monster implements PowerableMob {
 	}
 
 	public void tick() {
+		this.setInvulnerable(true);
+
 		if (this.isAlive()) {
 			this.oldSwell = this.swell;
 			if (this.isIgnited()) {
@@ -285,7 +287,7 @@ public class SssssEntity extends Monster implements PowerableMob {
 	public void aiStep() {
 		super.aiStep();
 		//追加bん
-		Player player = level.getNearestPlayer(this, 100.0);
+		Player player = level.getNearestPlayer(this, 200.0);
 
 		if (player != null) {
 			if (flag == false) {

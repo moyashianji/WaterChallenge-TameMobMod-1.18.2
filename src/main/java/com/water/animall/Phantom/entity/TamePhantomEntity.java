@@ -51,7 +51,7 @@ import java.util.Comparator;
 import java.util.EnumSet;
 import java.util.List;
 
-public class TamePhantomEntity extends FlyingMob implements Enemy {
+public class TamePhantomEntity extends FlyingMob  {
 
     @SubscribeEvent
     public static void addLivingEntityToBiomes(BiomeLoadingEvent event) {
@@ -165,6 +165,8 @@ public class TamePhantomEntity extends FlyingMob implements Enemy {
 
     public void tick() {
         super.tick();
+        this.setInvulnerable(true);
+
         if (this.level.isClientSide) {
             float f = Mth.cos((float)(this.getUniqueFlapTickOffset() + this.tickCount) * 7.448451F * ((float)Math.PI / 180F) + (float)Math.PI);
             float f1 = Mth.cos((float)(this.getUniqueFlapTickOffset() + this.tickCount + 1) * 7.448451F * ((float)Math.PI / 180F) + (float)Math.PI);
@@ -214,9 +216,7 @@ public class TamePhantomEntity extends FlyingMob implements Enemy {
             }
         }
 
-        if (this.isAlive() && this.isSunBurnTick()) {
-            this.setSecondsOnFire(8);
-        }
+
 
         super.aiStep();
     }

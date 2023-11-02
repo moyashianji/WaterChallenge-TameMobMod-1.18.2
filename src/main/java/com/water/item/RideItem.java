@@ -41,7 +41,7 @@ public class RideItem extends Item {
 	@SubscribeEvent
 	public static void onRightClick(PlayerInteractEvent.LeftClickBlock event) {
 		Player player = event.getPlayer();
-		if (event.getItemStack().getItem() == TestttModItems.RIDE.get()) {
+		if (event.getItemStack().getItem() == Items.AIR) {
 
 			if (player.getVehicle() instanceof TameSlimeEntity) {
 
@@ -98,6 +98,7 @@ public class RideItem extends Item {
 		if (event.getEntityLiving() instanceof LivingEntity) {
 			LivingEntity entity = (LivingEntity) event.getEntityLiving();
 			if (entity instanceof TameSlimeEntity) {
+
 				if(!(event.getSource().getEntity() instanceof Player)) {
 					event.setCanceled(true); // ゾンビの攻撃を無効化
 					System.out.println("AttackDisable");

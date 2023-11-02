@@ -170,8 +170,11 @@ public class TameIronGolem extends AbstractGolem implements NeutralMob {
     public void aiStep() {
         super.aiStep();
 
+        this.setInvulnerable(true);
+
         Player player = this.level.getNearestPlayer(this, 200.0);
         if (player != null) {
+
 
             // ゾンビがプレイヤーの背後を追従する
             double distanceX = player.getX() - this.getX();

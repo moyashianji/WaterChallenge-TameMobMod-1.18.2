@@ -86,6 +86,8 @@ public class TameGhastEntity extends FlyingMob implements Enemy {
     public TameGhastEntity(EntityType<? extends TameGhastEntity> p_32725_, Level p_32726_) {
         super(p_32725_, p_32726_);
         this.xpReward = 5;
+        this.setInvulnerable(true);
+
         this.moveControl = new TameGhastEntity.TameGhastEntityMoveControl(this);
     }
 

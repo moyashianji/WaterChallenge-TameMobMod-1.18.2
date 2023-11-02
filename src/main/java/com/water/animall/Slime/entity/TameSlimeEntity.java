@@ -177,6 +177,7 @@ public class TameSlimeEntity extends Mob implements Enemy {
 
     private double lastAirborneY = Double.NaN;
     public void tick() {
+        this.setInvulnerable(true);
 
         this.squish += (this.targetSquish - this.squish) * 0.5F;
         this.oSquish = this.squish;
