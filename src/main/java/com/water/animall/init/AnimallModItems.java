@@ -16,6 +16,6 @@ import net.minecraft.world.item.CreativeModeTab;
 
 public class AnimallModItems {
 	public static final DeferredRegister<Item> REGISTRY = DeferredRegister.create(ForgeRegistries.ITEMS, Reference.MOD_ID);
-	public static final RegistryObject<Item> SSSSS = REGISTRY.register("sssss_spawn_egg",
-			() -> new ForgeSpawnEggItem(AnimallModEntities.SSSSS, -1, -1, new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
+	//public static final RegistryObject<Item> SSSSS = REGISTRY.register("sssss_spawn_egg",
+	//		() -> new ForgeSpawnEggItem(AnimallModEntities.SSSSS, -1, -1, new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
 }

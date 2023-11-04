@@ -7,6 +7,8 @@ import com.water.gunss.init.GunssModItems;
 import com.water.gunss.procedures.GunFeibiDaoJugaenteiteiniDangtatutatokiProcedure;
 import com.water.tamemobitem.init.TamemobModItems;
 import com.water.teamitem.init.TeamitemModItems;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.animal.Cow;
 import net.minecraft.world.entity.animal.IronGolem;
 import net.minecraft.world.entity.animal.Wolf;
@@ -83,6 +85,17 @@ public class GunEntity extends AbstractArrow implements ItemSupplier {
 
 		if(!(entityHitResult.getEntity() instanceof Player)) {
 
+			if(!(entityHitResult.getEntity().level.isClientSide)) {
+				ServerLevel level = (ServerLevel) _level;
+
+				for (int i = 0; i < 360; i++) { // 必要な数だけ繰り返す
+
+					double xOffset = entityHitResult.getEntity().getX() + (_level.getRandom().nextDouble() - 0.5) * 2.0;
+					double yOffset = entityHitResult.getEntity().getY() + entityHitResult.getEntity().getBbHeight() * 0.5;
+					double zOffset = entityHitResult.getEntity().getZ() + (_level.getRandom().nextDouble() - 0.5) * 2.0;
+					level.sendParticles(ParticleTypes.COMPOSTER, xOffset, yOffset, zOffset, 1, 0.0, 0.0, 0.0, 0.0);
+				}
+			}
 			if(entityHitResult.getEntity() instanceof Blaze){
 
 				if (!_level.isClientSide()) {

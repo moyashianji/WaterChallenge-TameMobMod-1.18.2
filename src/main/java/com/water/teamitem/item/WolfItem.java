@@ -4,6 +4,7 @@ package com.water.teamitem.item;
 import com.water.init.TestttModItems;
 import com.water.item.RideItem;
 import com.water.teamitem.init.TeamitemModItems;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.animal.Wolf;
@@ -36,10 +37,19 @@ public class WolfItem extends Item {
 				entityToSpawn.setPos(player.getX(),player.getY(),player.getZ());
 				entityToSpawn.setInvulnerable(true);
 				player.level.addFreshEntity(entityToSpawn);
+
+
+					for (int i = 0; i < 360; i++) { // 必要な数だけ繰り返す
+
+						double xOffset = player.getX() + (_level.getRandom().nextDouble() - 0.5) * 3.0;
+						double yOffset = player.getY() + 2;
+						double zOffset = player.getZ() + (_level.getRandom().nextDouble() - 0.5) * 3.0;
+						_level.sendParticles(ParticleTypes.TOTEM_OF_UNDYING, xOffset, yOffset, zOffset, 1, 0.0, 0.0, 0.0, 0.0);
+					}
+				}
 			}
 
 		}
-	}
 
 	public static void register() {
 		MinecraftForge.EVENT_BUS.register(WolfItem.class);

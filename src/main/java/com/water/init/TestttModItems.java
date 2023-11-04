@@ -15,5 +15,5 @@ import net.minecraft.world.item.Item;
 
 public class TestttModItems {
 	public static final DeferredRegister<Item> REGISTRY = DeferredRegister.create(ForgeRegistries.ITEMS, Reference.MOD_ID);
-	public static final RegistryObject<Item> RIDE = REGISTRY.register("water", () -> new RideItem());
+	//public static final RegistryObject<Item> RIDE = REGISTRY.register("water", () -> new RideItem());
 }

@@ -1,6 +1,18 @@
 {
   "item.water.ride": "Ride",
-  "item.water.gun": "ボール",
-  "item.water.milk": "テイムされた牛のミルク"
+  "item.water.gun": "Mob Catcher",
+  "item.water.tamefhantom": "Mob Catcher (Phantom)",
+  "item.water.tameslime": "Mob Catcher (Slime)",
+  "item.water.tameblaze": "Mob Catcher (Blaze)",
+  "item.water.tameender": "Mob Catcher (EnderMan)",
+  "item.water.tameghast": "Mob Catcher (Ghast)",
+  "item.water.tamepiglin": "Mob Catcher (Piglin)",
+  "item.water.tamespider": "Mob Catcher (Spider)",
+  "item.water.tamecreeper": "Mob Catcher (Creeper)",
+  "item.water.tamegolem": "Mob Catcher (IronGolem)",
+  "item.water.tamecow": "Mob Catcher (Cow)",
+  "item.water.wolf": "Mob Catcher (Wolf)",
+  "item.water.milk": "Milk (Heal)"
+
 
 }

@@ -38,21 +38,6 @@ public class RideItem extends Item {
 		return retval;
 	}
 
-	@SubscribeEvent
-	public static void onRightClick(PlayerInteractEvent.LeftClickBlock event) {
-		Player player = event.getPlayer();
-		if (event.getItemStack().getItem() == Items.AIR) {
-
-			if (player.getVehicle() instanceof TameSlimeEntity) {
-
-				if(player.getVehicle().isOnGround()) {
-					((TameSlimeEntity) player.getVehicle()).setJumping(true);
-					player.getVehicle().setDeltaMovement(new Vec3((player.getVehicle().getDeltaMovement().x() + player.getVehicle().getLookAngle().x * 0.5), (player.getVehicle().getDeltaMovement().y() + 0.7),
-							(player.getVehicle().getDeltaMovement().z() + player.getVehicle().getLookAngle().z * 0.5)));
-				}
-			}
-		}
-	}
 
 	@Override
 	public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand usedHand) {

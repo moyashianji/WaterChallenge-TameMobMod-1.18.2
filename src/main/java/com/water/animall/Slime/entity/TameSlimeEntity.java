@@ -177,7 +177,6 @@ public class TameSlimeEntity extends Mob implements Enemy {
 
     private double lastAirborneY = Double.NaN;
     public void tick() {
-        this.setInvulnerable(true);
 
         this.squish += (this.targetSquish - this.squish) * 0.5F;
         this.oSquish = this.squish;
@@ -561,14 +560,20 @@ public class TameSlimeEntity extends Mob implements Enemy {
         }
 
         public void tick() {
+            Player player = this.mob.level.getNearestPlayer(this.mob, 200.0);
+
+
+
             this.mob.setYRot(this.rotlerp(this.mob.getYRot(), this.yRot, 90.0F));
             this.mob.yHeadRot = this.mob.getYRot();
             this.mob.yBodyRot = this.mob.getYRot();
             if (this.operation != MoveControl.Operation.MOVE_TO) {
                 this.mob.setZza(0.0F);
             } else {
+
                 this.operation = MoveControl.Operation.WAIT;
                 if (this.mob.isOnGround()) {
+
                     this.mob.setSpeed((float)(this.speedModifier * this.mob.getAttributeValue(Attributes.MOVEMENT_SPEED)));
                     if (this.jumpDelay-- <= 0) {
                         this.jumpDelay = this.TameSlimeEntity.getJumpDelay();

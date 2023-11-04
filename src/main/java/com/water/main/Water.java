@@ -12,6 +12,7 @@ import com.water.init.TestttModItems;
 import com.water.item.RideItem;
 import com.water.item.RidingUtilsCommonConfigs;
 import com.water.tamemobitem.init.TamemobModItems;
+import com.water.tamemobitem.item.TameslimeItem;
 import com.water.teamitem.init.TeamitemModItems;
 import com.water.teamitem.item.WolfItem;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -43,6 +44,7 @@ public class Water {
       //  ParlToEye.register();
         FlyEvent.register();
         DisableAttack.register();
+        TameslimeItem.register();
 
         bus.addListener(this::onClientSetup);
     }
